@@ -1,13 +1,33 @@
-<!-- HTML -->
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <button id="start-button">Start</button>
-    <div id="counter">
-      <div id="count">1.00</div>
-      <div id="result"></div>
+    <div class="interaction">
+      <button id="start-button">Start</button>
+      <div>
+        <p id="place-bet">Place Your bet</p>
+      </div>
+      <div>
+        <button id="button-5">5</button>
+        <button id="button-10">10</button>
+        <button id="button-20">20</button>
+        <button id="button-50">50</button>
+      </div>
+      <div id="total-container">
+        <div id="total-label">Total Bet: </div>
+        <div id="total">0</div>
+      </div>
+      <div>
+      <button id="reset-button">Reset Bet</button>
+      </div>
+      <div id="counter">
+        <div id="count-container">
+          <div id="count">1.00</div>
+          <div>x</div>
+        </div>
+        <div id="result"></div>
+      </div>
     </div>
     <script src="count.js"></script>
   </body>

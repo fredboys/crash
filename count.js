@@ -1,9 +1,17 @@
 const startButton = document.getElementById('start-button');
 const countElement = document.getElementById('count');
 const resultElement = document.getElementById('result');
+const button5 = document.getElementById('button-5');
+const button10 = document.getElementById('button-10');
+const button20 = document.getElementById('button-20');
+const button50 = document.getElementById('button-50');
+const totalElement = document.getElementById('total');
+const resetButton = document.getElementById('reset-button');
+
 
 let intervalId;
 let interval = 10;
+let total = 0;
 
 function startCounting() {
   // Disable the start button
@@ -75,4 +83,27 @@ if (random < 0.08) {
   }, interval);
 }
 
+
+button5.addEventListener('click', function() {
+  total += 5;
+  totalElement.innerHTML = total;
+});
+
+button10.addEventListener('click', function() {
+  total += 10;
+  totalElement.innerHTML = total;
+});
+
+button20.addEventListener('click', function() {
+  total += 20;
+  totalElement.innerHTML = total;
+});
+
+button50.addEventListener('click', function() {
+  total += 50;
+  totalElement.innerHTML = total;
+});
+
+
 startButton.addEventListener('click', startCounting);
+
