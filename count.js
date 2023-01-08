@@ -9,12 +9,14 @@ const totalElement = document.getElementById('total');
 const resetButton = document.getElementById('reset-button');
 const addBalance = document.getElementById('add-balance');
 const totalBalance = document.getElementById('balance');
+const cashOutButton = document.getElementById('cash-out-button');
 
 
 let intervalId;
-let interval = 10;
+let interval = 100;
 let total = 0;
-let balance = 0;
+let balance = 0.00;
+
 
 function startCounting() {
   // Disable the start button
@@ -25,6 +27,7 @@ function startCounting() {
   button20.disabled = true;
   button50.disabled = true;
   addBalance.disabled = true;
+  cashOutButton.disabled = false;
 
   resultElement.innerHTML = '';
   let count = 1;
@@ -81,26 +84,9 @@ if (random < 0.08) {
       button20.disabled = false;
       button50.disabled = false;
       addBalance.disabled = false;
-    } else if (Math.floor(count) % 5 === 0) {
-      clearInterval(intervalId);
-      interval -= 1;
-      intervalId = setInterval(() => {
-        count += 0.01;
-        countElement.innerHTML = count.toFixed(2);
-        if (count >= target) {
-          clearInterval(intervalId);
-          resultElement.innerHTML = 'Crash';
-          // Re-enable the start button
-          startButton.disabled = false;
-          resetButton.disabled = false;
-          button5.disabled = false;
-          button10.disabled = false;
-          button20.disabled = false;
-          button50.disabled = false;
-          addBalance.disabled = false;
-        }
-      }, interval);
-    }
+
+      cashOutButton.disabled = true;
+    } 
   }, interval);
 }
 
@@ -134,5 +120,27 @@ addBalance.addEventListener('click', function() {
   totalBalance.innerHTML = balance;
 });
 
-startButton.addEventListener('click', startCounting);
+cashOutButton.addEventListener('click', function() {
+  // Update the balance by adding the current count to it
+  let currentCount = parseFloat(countElement.innerHTML);
+  balance += currentCount * total;
+  totalBalance.innerHTML = balance.toFixed(2);
+  total = 0;
+  totalElement.innerHTML = total;
+
+  // Update the total balance element
+  totalBalance.innerHTML = balance;
+  cashOutButton.disabled = true;
+});
+
+cashOutButton.disabled = true;
+
+
+
+startButton.addEventListener('click', function() {
+  startCounting()
+  cashOutButton.disabled = false;
+});
+
+
 
