@@ -7,15 +7,24 @@ const button20 = document.getElementById('button-20');
 const button50 = document.getElementById('button-50');
 const totalElement = document.getElementById('total');
 const resetButton = document.getElementById('reset-button');
+const addBalance = document.getElementById('add-balance');
+const totalBalance = document.getElementById('balance');
 
 
 let intervalId;
 let interval = 10;
 let total = 0;
+let balance = 0;
 
 function startCounting() {
   // Disable the start button
   startButton.disabled = true;
+  resetButton.disabled = true;
+  button5.disabled = true;
+  button10.disabled = true;
+  button20.disabled = true;
+  button50.disabled = true;
+  addBalance.disabled = true;
 
   resultElement.innerHTML = '';
   let count = 1;
@@ -66,6 +75,12 @@ if (random < 0.08) {
       resultElement.innerHTML = 'Crash';
       // Re-enable the start button
       startButton.disabled = false;
+      resetButton.disabled = false;
+      button5.disabled = false;
+      button10.disabled = false;
+      button20.disabled = false;
+      button50.disabled = false;
+      addBalance.disabled = false;
     } else if (Math.floor(count) % 5 === 0) {
       clearInterval(intervalId);
       interval -= 1;
@@ -77,6 +92,12 @@ if (random < 0.08) {
           resultElement.innerHTML = 'Crash';
           // Re-enable the start button
           startButton.disabled = false;
+          resetButton.disabled = false;
+          button5.disabled = false;
+          button10.disabled = false;
+          button20.disabled = false;
+          button50.disabled = false;
+          addBalance.disabled = false;
         }
       }, interval);
     }
@@ -104,6 +125,14 @@ button50.addEventListener('click', function() {
   totalElement.innerHTML = total;
 });
 
+resetButton.addEventListener('click', function() {
+  totalElement.innerHTML = 0;
+});
+
+addBalance.addEventListener('click', function() {
+  balance += 100;
+  totalBalance.innerHTML = balance;
+});
 
 startButton.addEventListener('click', startCounting);
 
