@@ -13,7 +13,7 @@ const cashOutButton = document.getElementById('cash-out-button');
 
 
 let intervalId;
-let interval = 100;
+let interval = 10;
 let total = 0;
 let balance = 0.00;
 
@@ -76,6 +76,9 @@ if (random < 0.08) {
     if (count >= target) {
       clearInterval(intervalId);
       resultElement.innerHTML = 'Crash';
+      // Subtract total bet from balance
+      balance -= total;
+      totalBalance.innerHTML = balance.toFixed(2);
       // Re-enable the start button
       startButton.disabled = false;
       resetButton.disabled = false;
@@ -92,23 +95,55 @@ if (random < 0.08) {
 
 
 button5.addEventListener('click', function() {
-  total += 5;
-  totalElement.innerHTML = total;
+  if (balance > 0) {
+    if (total + 5 <= balance) {
+      total += 5;
+      totalElement.innerHTML = total;
+    } else {
+      alert("You don't have enough balance to place this bet.");
+    }
+  } else {
+    alert("You don't have enough balance to place a bet.");
+  }
 });
 
 button10.addEventListener('click', function() {
-  total += 10;
-  totalElement.innerHTML = total;
+  if (balance > 0) {
+    if (total + 10 <= balance) {
+      total += 10;
+      totalElement.innerHTML = total;
+    } else {
+      alert("You don't have enough balance to place this bet.");
+    }
+  } else {
+    alert("You don't have enough balance to place a bet.");
+  }
 });
 
 button20.addEventListener('click', function() {
-  total += 20;
-  totalElement.innerHTML = total;
+  if (balance > 0) {
+    if (total + 20 <= balance) {
+      total += 20;
+      totalElement.innerHTML = total;
+    } else {
+      alert("You don't have enough balance to place this bet.");
+    }
+  } else {
+    alert("You don't have enough balance to place a bet.");
+  }
 });
 
 button50.addEventListener('click', function() {
-  total += 50;
-  totalElement.innerHTML = total;
+  if (balance > 0) {
+    if (total + 50 <= balance) {
+      total += 50;
+      totalElement.innerHTML = total;
+    } else {
+      alert("You don't have enough balance to place this bet.");
+    }
+  } else {
+    alert("You don't have enough balance to place a bet.");
+  }
 });
 
 resetButton.addEventListener('click', function() {
